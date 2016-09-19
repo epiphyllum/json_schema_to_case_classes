@@ -15,7 +15,6 @@ object RootJsonType {
 
 sealed trait JsonType
 case object JStr  extends JsonType
-case object JBool extends JsonType
 case object JInt extends JsonType
 
 object JsonType {
@@ -34,7 +33,6 @@ object Property {
 sealed trait MyType
 case class MyInt(min: Option[Int], max: Option[Int]) extends MyType
 case object MyStr            				         extends MyType
-case object MyBool                        			 extends MyType
 
 object JsonMapper {
 
@@ -43,7 +41,7 @@ object JsonMapper {
 	def read(x: String): Option[OutputClass] = 
 		parse(x).toOption >>= (json => json.as[JsonSchema].toOption) >>= readHelper
 
-	def readHelper(schema: JsonSchema): Option[OutputClass] = schema._type match {
+	private def readHelper(schema: JsonSchema): Option[OutputClass] = schema._type match {
 		case JObj => 
 			val name                        = schema.title	
 			val outputClassFields: Map[String, MyType] = schema.properties.map(extractField).toMap
@@ -55,7 +53,6 @@ object JsonMapper {
 		val fieldName = property.name
 		property._type match {
 			case JStr  => (fieldName, MyStr)
-			case JBool => (fieldName, MyBool)
 			case JInt  => (fieldName, MyInt(property.minimum, property.maximum))
 			case _ 	   => ??? // TODO: extract array or object as a List and another case class, respectively, maybe?
 		} 

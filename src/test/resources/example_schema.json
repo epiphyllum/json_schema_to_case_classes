@@ -1,0 +1,18 @@
+{
+	"title": "Example Schema",
+	"_type": "JObj",
+	"properties": {
+		"firstName": {
+			"_type": "JStr"
+		},
+		"lastName": {
+			"_type": "JStr"
+		},
+		"age": {
+			"description": "Age in years",
+			"_type": "JInt",
+			"minimum": 0
+		}
+	},
+	"required": ["firstName", "lastName"]
+}

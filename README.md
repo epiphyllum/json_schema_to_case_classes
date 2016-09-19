@@ -2,7 +2,7 @@
 
 ## Problem:
 
-Read 1..N JSON files into case classes, i.e. one case class per JSON.
+Read a JSON schema into a case class.
 
 Example: `Foo.json`
 
@@ -39,6 +39,6 @@ where `BoundedInt` is already defined by:
 class BoundedInt private (age: Int) 
 object BoundedInt {
 	def apply(x: Int): Option[BoundedInt] = 
-	 if(x >= 0 && x < Int.MaxValue) Some( new BoundedInt(x) ) else None
+	 if(x >= 0) Some( new BoundedInt(x) ) else None
 }
 ```

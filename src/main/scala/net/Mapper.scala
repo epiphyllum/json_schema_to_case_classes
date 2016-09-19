@@ -10,7 +10,6 @@ object Mapper {
 		t match {
 			case MyInt(_,_) => classOf[Int]     :: acc
 			case MyStr      => classOf[String]  :: acc
-			case MyBool     => classOf[Boolean] :: acc
 		} 
 	}
 }
