@@ -1,6 +1,6 @@
 {
 	"title": "Example Schema",
-	"_type": "JObj",
+	"type": "JObj",
 	"properties": {
 		"firstName": {
 			"_type": "JStr"
